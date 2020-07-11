@@ -1,0 +1,19 @@
+* {
+   box-sizing: border-box;
+}
+
+html {
+   min-height: 100vh;
+}
+body {
+   min-height: 100%;
+   font-family: $font;
+   background: linear-gradient(55deg, $portGore 25%, $electricViolet);
+   background-color: $portGore;
+   color: $white;
+}
+
+a {
+   text-decoration: none;
+   color: $turquoise;
+}
