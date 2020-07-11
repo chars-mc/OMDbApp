@@ -4,6 +4,7 @@
    grid-template-columns: 3rem auto 3rem;
    justify-content: space-between;
    align-items: center;
+   position: relative;
 }
 
 /* menu */
@@ -18,17 +19,24 @@
 }
 .menu {
    padding: 0;
+   top: 70%;
+   left: 0;
+   position: absolute;
+   width: 100%;
+   z-index: 1;
 }
 .menu__item {
    list-style: none;
-   margin-right: 10px;
-   display: inline-block;
    align-items: center;
 }
 .menu__link {
    display: flex;
    align-items: center;
-   font-size: .9rem;
+   justify-content: center;
+   padding: 15px;
+}
+.menu__link > i {
+   margin-right: 5px;
 }
 
 /* logo */
@@ -59,6 +67,15 @@
       display: none;
    }
    .menu, .search__field {
+      top: 0;
+      position: relative;
       display: block;
+   }
+   .menu__item {
+      display: inline-block;
+      margin-right: 10px;
+   }
+   .menu__link {
+      padding: 0;
    }
 }
