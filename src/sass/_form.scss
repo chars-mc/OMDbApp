@@ -1,0 +1,12 @@
+input[type="search"] {
+   border: none;
+   border-bottom: 1px solid $electricViolet;
+   font-style: italic;
+   color: $white;
+   outline: none;
+   background-color: transparent;
+   -webkit-text-fill-color: $white;
+   transition: background-color 5000s ease-in-out 0s;
+   width: 100%;
+   padding: 5px;
+}
