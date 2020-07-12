@@ -7,7 +7,17 @@ const KEY = 'cea5004f';
 const menu = document.getElementById('menu');
 const searchField = document.getElementById('searchField');
 
+import { Router } from './router/Router';
+
+window.addEventListener('hashchange', () => {
+   Router(location.hash);
+   hideElement(menu);
+   hideElement(searchField);
+});
+
 window.addEventListener('load', () => {
+   Router(location.hash === ''? '#/': location.hash);
+
    document.getElementById('menuButton').addEventListener('click', () => {
       menu.classList.toggle('is-hide');
       hideElement(searchField);
