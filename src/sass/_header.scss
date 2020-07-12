@@ -55,8 +55,11 @@
 }
 
 /* search */
-.header__search-field {
-   display: none;
+.search__field {
+   position: absolute;
+   text-align: center;
+   top: 100%;
+   left: 0;
 }
 
 @media (min-width: 720px) {
