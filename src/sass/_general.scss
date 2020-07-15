@@ -1,0 +1,16 @@
+.errors {
+   position: absolute;
+   width: 320px;
+   padding: 5px;
+   border-radius: 5px;
+   color: $hollywoodCerise;
+   font-size: .9rem;
+   background-color: $portGore;
+   left: 50%;
+   transform: translate(-50%);
+}
+.errors > p {
+   text-align: center;
+   margin: 0;
+   margin-bottom: 3px;
+}

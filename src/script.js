@@ -8,6 +8,7 @@ const menu = document.getElementById('menu');
 const searchField = document.getElementById('searchField');
 
 import { Router } from './router/Router';
+import { hideElement } from './js/UI';
 
 window.addEventListener('hashchange', () => {
    Router(location.hash);
@@ -36,8 +37,3 @@ window.addEventListener('resize', () => {
       hideElement(searchField);
    }
 });
-
-function hideElement(element) {
-   if(!element.classList.contains('is-hide'))
-      element.classList.add('is-hide');
-}
