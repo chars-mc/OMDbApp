@@ -12,10 +12,8 @@ export default async () => {
    div.innerHTML += view;
    movies = await getMovies();
 
-   // console.log(movies);
    movies.Search.forEach(movie => {
       fragment.appendChild(printMovie(movie));
-      console.log(movie)
    });
 
    div.querySelector('#movies').appendChild(fragment);
