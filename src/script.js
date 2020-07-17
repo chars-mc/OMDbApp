@@ -11,6 +11,7 @@ window.addEventListener('hashchange', () => {
    Router(location.hash);
    hideElement(menu);
    hideElement(searchField);
+   removeBlurBackground();
 });
 
 window.addEventListener('load', () => {
