@@ -1,11 +1,11 @@
 const root = document.getElementById('root');
 import { Pages } from '../controller/index';
-import { logIn } from '../js/UI';
+import { getUser } from '../js/UI';
 
 const Router = async (route) => {
    root.innerHTML = '';
 
-   if(!sessionStorage.getItem('omdbSession')) location.hash = '#/login';
+   if(!getUser()) route = '#/login';
 
    switch(route) {
       case '#/': return root.appendChild(await Pages.home());
