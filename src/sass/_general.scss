@@ -14,3 +14,51 @@
    margin: 0;
    margin-bottom: 3px;
 }
+
+.movies {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+   justify-content: space-between;
+   gap: 5px;
+}
+.movie {
+   padding: 5px;
+   transition: box-shadow .3s;
+
+   display: flex;
+   flex-direction: column;
+}
+.movie:hover,
+.movie:hover .movie__poster {
+   box-shadow: 0px 0px 1px $white;
+}
+.movie__poster {
+   height: auto;
+}
+.movie__details {
+   margin-top: auto;
+}
+.movie__title {
+   font-size: 1rem;
+   margin: 5px 0;
+}
+
+.movie__actions {
+   display: flex;
+   justify-content: space-between;
+}
+.movie__read-more {
+   box-shadow: 0px 0px 1px $white;
+   display: flex;
+   align-items: center;
+   padding: 5px;
+   font-size: .9rem;
+}
+.movie__add-favorite {
+   color: white;
+   font-size: .5rem;
+   background-color: transparent;
+}
+.movie__add-favorite:hover i{
+   color: $turquoise;
+}

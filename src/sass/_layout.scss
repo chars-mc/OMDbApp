@@ -5,3 +5,9 @@
    margin-right: auto;
 }
 
+header {
+   z-index: 1;
+   position: sticky;
+   top: 0;
+   backdrop-filter: blur(20px);
+}
