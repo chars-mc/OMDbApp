@@ -33,3 +33,22 @@ export function hideElement(element) {
 export function showElement(element) {
    element.classList.remove('is-hide');
 }
+
+export function getMovieTemplate(movie) {
+   const user = getUser();
+   const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
+
+   return `
+      <img src="${movie.Poster}" alt="${movie.Title}" class="movie__poster">
+      <div class="movie__details">
+         <h4 class="movie__title">${movie.Title}</h4>
+         <div class="movie__actions">
+            <a href="#/movie/${movie.Title}" class="movie__read-more">READ MORE
+               <i class="material-icons">arrow_right</i>
+            </a>
+            <button class="movie__add-favorite button">
+               <i class="material-icons">${exist >= 0? 'star':'star_border'}</i>
+            </button>
+         </div>
+      </div>`;
+}

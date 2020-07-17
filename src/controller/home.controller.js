@@ -1,9 +1,12 @@
 import view from '../views/home.html';
 
+import { getUser, registerUser, getMovieTemplate } from '../js/UI';
+
 const URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=';
 const KEY = 'cea5004f';
 
 let movies = [];
+const user = getUser();
 
 export default async () => {
    const div = document.createElement('div');
@@ -31,19 +34,20 @@ async function getMovies(search = 'robot') {
 function printMovie(movie) {
    const movieDiv = document.createElement('div');
    movieDiv.className = 'movie';
-   movieDiv.innerHTML = /*html*/ `
-      <img src="${movie.Poster}" alt="${movie.Title}" class="movie__poster">
-      <div class="movie__details">
-         <h4 class="movie__title">${movie.Title}</h4>
-         <div class="movie__actions">
-            <a href="#/movie/${movie.Title}" class="movie__read-more">READ MORE
-               <i class="material-icons">arrow_right</i>
-            </a>
-            <button class="movie__add-favorite button">
-               <i class="material-icons">star_border</i>
-            </button>
-         </div>
-      </div>`;
+   movieDiv.innerHTML = getMovieTemplate(movie);
+
+   movieDiv.querySelector('.movie__add-favorite').addEventListener('click', () => {
+      const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
+
+      if(exist >= 0) {
+         user.favorites.splice(exist, 1);
+      } else {
+         user.favorites.push(movie);
+         localStorage.setItem(user.username, JSON.stringify(user));
+         sessionStorage.setItem('omdbSession', JSON.stringify(user));
+      }
+      console.log(user.favorites);
+   });
 
    return movieDiv;
 }
