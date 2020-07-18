@@ -40,13 +40,14 @@ function printMovie(movie) {
       const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
 
       if(exist >= 0) {
+         movieDiv.querySelector('.favorite-icon').textContent = 'star_border';
          user.favorites.splice(exist, 1);
       } else {
          user.favorites.push(movie);
-         localStorage.setItem(user.username, JSON.stringify(user));
-         sessionStorage.setItem('omdbSession', JSON.stringify(user));
+         movieDiv.querySelector('.favorite-icon').textContent = 'star';
       }
-      console.log(user.favorites);
+      localStorage.setItem(user.username, JSON.stringify(user));
+      sessionStorage.setItem('omdbSession', JSON.stringify(user));
    });
 
    return movieDiv;

@@ -12,7 +12,7 @@ export default () => {
       const fragment = document.createDocumentFragment();
 
       user.favorites.forEach(movie => {
-         fragment.appendChild(printMovie(movie));
+         fragment.appendChild(printMovie(movie, user));
       });
 
       div.querySelector('#movies').appendChild(fragment);
@@ -21,10 +21,24 @@ export default () => {
    return div;
 }
 
-function printMovie(movie) {
+function printMovie(movie, user) {
    const movieDiv = document.createElement('div');
    movieDiv.className = 'movie';
    movieDiv.innerHTML = getMovieTemplate(movie);
+
+   movieDiv.querySelector('.movie__add-favorite').addEventListener('click', () => {
+      const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
+
+      if(exist >= 0) {
+         movieDiv.querySelector('.favorite-icon').textContent = 'star_border';
+         user.favorites.splice(exist, 1);
+      } else {
+         user.favorites.push(movie);
+         movieDiv.querySelector('.favorite-icon').textContent = 'star';
+      }
+      sessionStorage.setItem('omdbSession', JSON.stringify(user));
+      localStorage.setItem(user.username, JSON.stringify(user));
+   });
 
    return movieDiv;
 }

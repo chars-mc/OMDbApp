@@ -47,7 +47,7 @@ export function getMovieTemplate(movie) {
                <i class="material-icons">arrow_right</i>
             </a>
             <button class="movie__add-favorite button">
-               <i class="material-icons">${exist >= 0? 'star':'star_border'}</i>
+               <i class="material-icons favorite-icon">${exist >= 0? 'star':'star_border'}</i>
             </button>
          </div>
       </div>`;
