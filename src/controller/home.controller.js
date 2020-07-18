@@ -20,7 +20,24 @@ export default async () => {
    });
 
    div.querySelector('#movies').appendChild(fragment);
-   
+
+   document.getElementById('searchField').addEventListener('search', async (e) => {
+      if(e.target.value === '') return div.querySelector('#movies').innerHTML = 'No results';
+
+      div.querySelector('#home__title').textContent = 'Results';
+      const result = await getMovies(e.target.value);
+      fragment = document.createDocumentFragment();
+
+      if(result.Error) return div.querySelector('#movies').innerHTML = 'No results';
+
+      div.querySelector('#movies').innerHTML = '';
+      result.Search.forEach(movie => {
+         fragment.appendChild(printMovie(movie));
+      });
+      div.querySelector('#movies').appendChild(fragment);
+      
+   });
+
    return div;
 };
 
@@ -39,7 +56,7 @@ function printMovie(movie) {
    movieDiv.querySelector('.movie__add-favorite').addEventListener('click', () => {
       const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
 
-      if(exist >= 0) {
+      if (exist >= 0) {
          movieDiv.querySelector('.favorite-icon').textContent = 'star_border';
          user.favorites.splice(exist, 1);
       } else {
