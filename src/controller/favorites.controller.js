@@ -7,6 +7,7 @@ export default () => {
    const user = getUser();
 
    div.innerHTML = view;
+   document.getElementById('header__search').classList.add('is-hide');
 
    if(user.favorites.length > 0) {
       const fragment = document.createDocumentFragment();

@@ -9,7 +9,6 @@ export default () => {
 
    hideElement(document.getElementById('header__menu'));
    hideElement(document.getElementById('header__search'));
-   hideElement(document.getElementById('header__logo'));
    document.getElementById('header__logo').style.gridColumn = 'span 3';
    
    div.innerHTML = view;

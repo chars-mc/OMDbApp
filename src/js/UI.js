@@ -1,40 +1,40 @@
 import { User } from './User';
 
-export function logIn(user) {
+function logIn(user) {
    const userDB = JSON.parse(localStorage.getItem(user.username));
    sessionStorage.setItem('omdbSession', JSON.stringify(userDB));
 }
 
-export function verifyPassword(user) {
+function verifyPassword(user) {
    const userDB = JSON.parse(localStorage.getItem(user.username));
    return userDB.password === user.password;
 }
 
-export function userExist(username) {
+function userExist(username) {
    const userDB = JSON.parse(localStorage.getItem(username));
    return userDB? true:false;
 }
 
-export function registerUser(user) {
+function registerUser(user) {
    const newUser = new User(user.username, user.password, []);
    localStorage.setItem(user.username, JSON.stringify(newUser));
 
    logIn(user);
 }
 
-export function getUser() {
+function getUser() {
    return JSON.parse(sessionStorage.getItem('omdbSession'));
 }
 
-export function hideElement(element) {
+function hideElement(element) {
    element.classList.add('is-hide');
 }
 
-export function showElement(element) {
+function showElement(element) {
    element.classList.remove('is-hide');
 }
 
-export function getMovieTemplate(movie) {
+function getMovieTemplate(movie) {
    const user = getUser();
    const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
 
@@ -53,7 +53,7 @@ export function getMovieTemplate(movie) {
       </div>`;
 }
 
-export function getMovieModalTemplate(movie) {
+function getMovieModalTemplate(movie) {
    return `
       <img class="movie-modal__poster" src="${movie.Poster}">
       <h3 class="movie-modal__title">${movie.Title}</h3>
@@ -66,6 +66,14 @@ export function getMovieModalTemplate(movie) {
       <button class="movie-modal__close button"><i class="material-icons">close<i></button>`;
 }
 
-export function printModalMovie(div) {
-
-}
+export {
+   logIn,
+   verifyPassword,
+   userExist,
+   registerUser,
+   getUser,
+   hideElement,
+   showElement,
+   getMovieTemplate,
+   getMovieModalTemplate
+};

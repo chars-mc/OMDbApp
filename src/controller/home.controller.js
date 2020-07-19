@@ -6,12 +6,12 @@ const URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=';
 const KEY = 'cea5004f';
 
 let movies = [];
-const user = getUser();
 
 export default async () => {
    const div = document.createElement('div');
    let fragment = document.createDocumentFragment();
 
+   document.getElementById('header__search').classList.remove('is-hide');
    div.innerHTML += view;
    movies = await getMovies();
 
@@ -22,6 +22,7 @@ export default async () => {
    div.querySelector('#movies').appendChild(fragment);
 
    document.getElementById('searchField').addEventListener('search', async (e) => {
+      document.getElementById('root').classList.remove('is-blur');
       if(e.target.value === '') return div.querySelector('#movies').innerHTML = 'No results';
 
       div.querySelector('#home__title').textContent = 'Results';
@@ -50,12 +51,12 @@ async function getMovies(search = 'robot') {
 
 function printMovie(movie) {
    const movieDiv = document.createElement('div');
+   let user = getUser();
    movieDiv.className = 'movie';
    movieDiv.innerHTML = getMovieTemplate(movie);
 
    movieDiv.querySelector('.movie__add-favorite').addEventListener('click', () => {
       const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
-
       if (exist >= 0) {
          movieDiv.querySelector('.favorite-icon').textContent = 'star_border';
          user.favorites.splice(exist, 1);
