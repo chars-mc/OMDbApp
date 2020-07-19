@@ -1,6 +1,6 @@
 import view from '../views/favorites.html';
 
-import { getUser, getMovieTemplate } from '../js/UI';
+import { getUser, getMovieTemplate, getMovieModalTemplate } from '../js/UI';
 
 export default () => {
    const div = document.createElement('div');
@@ -39,6 +39,21 @@ function printMovie(movie, user) {
       sessionStorage.setItem('omdbSession', JSON.stringify(user));
       localStorage.setItem(user.username, JSON.stringify(user));
    });
+
+   movieDiv.querySelector('.movie__read-more').addEventListener('click', () => {
+      const modal = document.createElement('div');
+      modal.classList = 'movie-modal';
+
+      document.body.classList.add('no-scroll');
+      modal.innerHTML = getMovieModalTemplate(movie);
+      modal.querySelector('.movie-modal__close').addEventListener('click', (e) => {
+         document.body.removeChild(modal);
+         document.body.classList.remove('no-scroll');
+      });
+
+      document.body.appendChild(modal);
+   });
+
 
    return movieDiv;
 }

@@ -1,6 +1,6 @@
 import view from '../views/home.html';
 
-import { getUser, registerUser, getMovieTemplate } from '../js/UI';
+import { getUser, getMovieTemplate, getMovieModalTemplate } from '../js/UI';
 
 const URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=';
 const KEY = 'cea5004f';
@@ -65,6 +65,20 @@ function printMovie(movie) {
       }
       localStorage.setItem(user.username, JSON.stringify(user));
       sessionStorage.setItem('omdbSession', JSON.stringify(user));
+   });
+
+   movieDiv.querySelector('.movie__read-more').addEventListener('click', () => {
+      const modal = document.createElement('div');
+      modal.classList = 'movie-modal';
+
+      document.body.classList.add('no-scroll');
+      modal.innerHTML = getMovieModalTemplate(movie);
+      modal.querySelector('.movie-modal__close').addEventListener('click', (e) => {
+         document.body.removeChild(modal);
+         document.body.classList.remove('no-scroll');
+      });
+
+      document.body.appendChild(modal);
    });
 
    return movieDiv;

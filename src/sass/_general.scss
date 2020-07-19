@@ -48,11 +48,17 @@
    justify-content: space-between;
 }
 .movie__read-more {
+   background-color: transparent;
+   color: $white;
    box-shadow: 0px 0px 1px $white;
    display: flex;
    align-items: center;
    padding: 5px;
    font-size: .9rem;
+   transition: color .3s;
+}
+.movie__read-more:hover {
+   color: $turquoise;
 }
 .movie__add-favorite {
    color: white;
@@ -61,4 +67,48 @@
 }
 .movie__add-favorite:hover i{
    color: $turquoise;
+}
+
+.movie-modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   // bottom: 0;
+   // right: 0;
+   // margin: auto;
+   width: 100vw;
+   height: 100vh;
+   background: linear-gradient(45deg, $portGore, $razzmatazz);
+   
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   z-index: 3;
+   overflow-y: hidden;
+}
+.movie-modal__title {
+   text-align: center;
+   margin: 10px 0;
+}
+.movie-modal__details p{
+   text-align: center;
+   margin: 5px 0;
+}
+.movie-modal__close {
+   background-color: $hollywoodCerise;
+   color: $white;
+   position: absolute;
+   top: 40px;
+   right: 40px;
+   border-radius: 50%;
+   padding: 5px;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   transition: transform .2s;
+}
+.movie-modal__close:hover {
+   transform: scale(1.1);
 }
