@@ -34,8 +34,7 @@ function showElement(element) {
    element.classList.remove('is-hide');
 }
 
-function getMovieTemplate(movie) {
-   const user = getUser();
+function getMovieTemplate(user, movie) {
    const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
 
    return `
@@ -66,6 +65,58 @@ function getMovieModalTemplate(movie) {
       <button class="movie-modal__close button"><i class="material-icons">close<i></button>`;
 }
 
+function getModal(movie) {
+   const modal = document.createElement('div');
+   modal.classList = 'movie-modal';
+
+   document.body.classList.add('no-scroll');
+   modal.innerHTML = getMovieModalTemplate(movie);
+   modal.querySelector('.movie-modal__close').addEventListener('click', () => {
+      document.body.removeChild(modal);
+      document.body.classList.remove('no-scroll');
+   });
+   
+   return modal;
+}
+
+function getMovieDiv(user, movie) {
+   const movieDiv = document.createElement('div');
+   movieDiv.className = 'movie';
+   movieDiv.innerHTML = getMovieTemplate(user, movie);
+
+   movieDiv.querySelector('.movie__add-favorite').addEventListener('click', () => {
+      addFavorite(user, movie, movieDiv);
+      
+      sessionStorage.setItem('omdbSession', JSON.stringify(user));
+      localStorage.setItem(user.username, JSON.stringify(user));
+   });
+
+   return movieDiv;
+}
+
+function addFavorite(user, movie, movieDiv) {
+   const exist = user.favorites.findIndex((favorite) => favorite.Title === movie.Title);
+
+   if(exist >= 0) {
+      movieDiv.querySelector('.favorite-icon').textContent = 'star_border';
+      user.favorites.splice(exist, 1);
+   } else {
+      user.favorites.push(movie);
+      movieDiv.querySelector('.favorite-icon').textContent = 'star';
+   }
+}
+
+function printMovie(movie, user) {
+   const movieDiv = getMovieDiv(user, movie);
+
+   movieDiv.querySelector('.movie__read-more').addEventListener('click', () => {
+      document.body.appendChild(getModal(movie));
+   });
+
+   return movieDiv;
+}
+
+
 export {
    logIn,
    verifyPassword,
@@ -74,6 +125,5 @@ export {
    getUser,
    hideElement,
    showElement,
-   getMovieTemplate,
-   getMovieModalTemplate
+   printMovie
 };

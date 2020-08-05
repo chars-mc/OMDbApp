@@ -29,8 +29,6 @@ export default () => {
       showElement(document.getElementById('header__logo'))
       document.getElementById('header__logo').style.gridColumn = 'span 1';
 
-      console.log(getUser());
-
       location.hash = '#/';
    });
 
@@ -57,12 +55,10 @@ function printErrors(errors = [], div) {
    });
 
    showElement(div);
-   // div.classList.add('is-show');
    div.appendChild(fragment);
 
    setTimeout(() => {
       hideElement(div);
-      // div.classList.remove('is-show');
       div.innerHTML = '';
    }, 2500 * errors.length);
 }

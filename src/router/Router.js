@@ -5,7 +5,7 @@ import { getUser } from '../js/UI';
 const Router = async (route) => {
    root.innerHTML = '';
 
-   if(!getUser()) route = '#/login';
+   if(!getUser()) location.hash = '#/login';
 
    switch(route) {
       case '#/': return root.appendChild(await Pages.home());

@@ -15,7 +15,8 @@ window.addEventListener('hashchange', () => {
 });
 
 window.addEventListener('load', () => {
-   Router(location.hash === ''? '#/': location.hash);
+   // Router(location.hash === ''? '#/': location.hash);
+   location.hash = '#/login';
 
    document.getElementById('menuButton').addEventListener('click', () => {
       menu.classList.toggle('is-hide');
