@@ -2,7 +2,7 @@ import view from '../views/home.html';
 
 import { getUser, getMovieTemplate, getMovieModalTemplate } from '../js/UI';
 
-const URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=';
+const URL = 'https://www.omdbapi.com/?i=tt3896198&apikey=';
 const KEY = 'cea5004f';
 
 let movies = [];
