@@ -5,6 +5,10 @@ function logIn(user) {
    sessionStorage.setItem('omdbSession', JSON.stringify(userDB));
 }
 
+function logOut() {
+   sessionStorage.removeItem('omdbSession');
+}
+
 function verifyPassword(user) {
    const userDB = JSON.parse(localStorage.getItem(user.username));
    return userDB.password === user.password;
@@ -119,6 +123,7 @@ function printMovie(movie, user) {
 
 export {
    logIn,
+   logOut,
    verifyPassword,
    userExist,
    registerUser,

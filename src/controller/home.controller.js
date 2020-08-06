@@ -40,6 +40,8 @@ export default async () => {
       div.querySelector('#movies').appendChild(fragment);
       
       e.target.value = '';
+
+      e.target.blur();
    });
 
    return div;

@@ -5,7 +5,7 @@ const menu = document.getElementById('menu');
 const searchField = document.getElementById('searchField');
 
 import { Router } from './router/Router';
-import { hideElement } from './js/UI';
+import { hideElement, logOut } from './js/UI';
 
 window.addEventListener('hashchange', () => {
    Router(location.hash);
@@ -15,8 +15,7 @@ window.addEventListener('hashchange', () => {
 });
 
 window.addEventListener('load', () => {
-   // Router(location.hash === ''? '#/': location.hash);
-   location.hash = '#/login';
+   Router(location.hash);
 
    document.getElementById('menuButton').addEventListener('click', () => {
       menu.classList.toggle('is-hide');
@@ -32,6 +31,7 @@ window.addEventListener('load', () => {
       addBlurBackground();
    });
 
+   document.getElementById('logout').addEventListener('click', logOut);
 });
 
 window.addEventListener('resize', () => {

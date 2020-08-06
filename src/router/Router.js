@@ -5,9 +5,11 @@ import { getUser } from '../js/UI';
 const Router = async (route) => {
    root.innerHTML = '';
 
-   if(!getUser()) location.hash = '#/login';
+   if(!getUser() && route !== '#/login') return location.hash = '#/login';
+   else if(getUser() && route === '#/login') return location.hash = '#/';
 
    switch(route) {
+      case '':
       case '#/': return root.appendChild(await Pages.home());
       case '#/favorites': return root.appendChild(Pages.favorites());
       case '#/login': return root.appendChild(Pages.login());
